@@ -43,6 +43,7 @@ void setup() {
 void draw() {
   background(0);
   fill( 255,255,0 );
+  textSize(12);
   text( nE, width-50, 20 );
   text( "+ or - to change \natomic number Z", width-100, 40 );
 
