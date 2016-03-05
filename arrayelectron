@@ -1,0 +1,88 @@
+Electron[] electron;
+Element[] element;
+
+int nE = 0;
+
+void setup() {
+  size (1000, 800);
+  frameRate(150);
+
+  smooth();
+  noStroke();
+  
+  electron = new Electron[32];
+  element = new Element[118];
+
+  for (int i = 0; i < element.length; i++) {
+    element[i] = new Element();
+  }     
+
+
+  for (int i = 0; i < nE; i++) {
+    electron[i] = new Electron();
+  }
+}
+
+void draw() {
+  background(0);
+
+  for (int i = 0; i < element.length; i++) {
+    element[i].display();
+  }                       //CREATE THE NUCLEUS
+
+  for (int i = 0; i < electron.length; i++) {
+    electron[i].display(); //DISPLAY THE ELECTRON
+    electron[i].orbit(); //ORBIT THE ELECTRON
+  }
+}
+  
+class Element {
+  float eleX, eleY;
+  float eleI;
+
+  Element() {
+    eleX = width/2;
+    eleY = height/2;
+    eleI = 25;
+  }
+
+  void display() {
+    fill(255);
+    ellipseMode(RADIUS);
+    ellipse(eleX, eleY, eleI, eleI);
+    fill(0);
+    textSize(25);
+    text("H", eleX-10, eleY+10);
+  }
+}
+
+class Electron {
+  float ex, ey, vx, vy, nx, ny, ax, ay;
+
+  Electron() {
+    ex = 200; //ELECTRON X & Y
+    ey = 0;
+
+    vy = -1; //INCREASE VX & VY
+    vx = 0;
+  }
+
+  void orbit() { 
+    ax = -ex / sq(dist(ex, ey, 0, 0)); //FINDING DISTANCE BETWEEN BOTH X + Y COORDINATES
+    ay = -ey / sq(dist(ex, ey, 0, 0));
+
+    vx+=ax; //ADDING VX TO AX == 0 + AX equation
+    vy+=ay; //ADDING VY TO AY == -1 + AX equation 
+
+    ex+=vx; //ADDING EX TO VX == 200 + 0
+    ey+=vy; //ADDING EY TO VY == 0 + 0
+  }
+
+  void display() {
+    fill(255);
+    translate(width/2.0, height/2.0);
+    ellipse(ex, ey, 10, 10);
+    fill(0);
+    text("-", ex-7, ey+7);
+  }
+}
