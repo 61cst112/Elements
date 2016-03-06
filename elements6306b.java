@@ -57,6 +57,7 @@ void draw() {
   textSize(12);
   text( nE, width-50, 20 );
   text( "+ or - to change \natomic number Z", width-100, 40 );
+  text( "Or type in letters such as H, C, U, or G (for gold)", width-100, 60 );
 
 /*--
   for (int i = 0; i < element.length; i++) {
@@ -77,6 +78,7 @@ void keyPressed() {
   if (key == 'H') { nE=1; }
   if (key == 'C') { nE=12; }
   if (key == 'A') { nE=79; }
+  if (key == 'G') { nE=79; }
   if (key == 'U') { nE=92; }
   //
   if (key == '+') { nE++; }
