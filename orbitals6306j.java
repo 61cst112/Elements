@@ -62,7 +62,7 @@ void draw() {
   textSize(12);
   text( "Z="+nE, width-50, 20 );
   text( "+ or - to change atomic number Z", width-250, 40 );
-  text( "Or letters such as H, C, N, O, F, K, U, etc.\n    G for gold, A for silver, ! for Uuo", width-250, 60 );
+  text( "Or letters such as H, C, N, O, F, K, U, etc.\n    A for silver, G for gold, ! for Uuo", width-250, 60 );
 
 /*--
   for (int i = 0; i < element.length; i++) {
