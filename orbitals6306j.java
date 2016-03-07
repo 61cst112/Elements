@@ -202,39 +202,4 @@ class Element {
   }
 }
 
-class Electron {
-  float ex, ey, vx, vy, nx, ny, ax, ay;
-
-  Electron() {
-    /*--
-    ex = 200; //ELECTRON X & Y
-    ey = 0;
-    --*/
-    ex=  20 + width/2;
-    ey=  20 + height/2;
-
-    vy = -1; //INCREASE VX & VY
-    vx = 0;
-  }
-
-  void orbit() { 
-    ax = -ex / sq(dist(ex, ey, 0, 0)); //FINDING DISTANCE BETWEEN BOTH X + Y COORDINATES
-    ay = -ey / sq(dist(ex, ey, 0, 0));
-
-    vx+=ax; //ADDING VX TO AX == 0 + AX equation
-    vy+=ay; //ADDING VY TO AY == -1 + AX equation 
-
-    ex+=vx; //ADDING EX TO VX == 200 + 0
-    ey+=vy; //ADDING EY TO VY == 0 + 0
-  }
-
-  void display() {
-    fill(255);
-//--??    
-translate(width/2.0, height/2.0);
-    ellipse(ex, ey, 10, 10);
-    fill(0);
-    text("-", ex-7, ey+7);
-  }
-}
 
