@@ -166,28 +166,30 @@ class Element {
   void electrons() {
     // Electrons
     fill(255);
-    float r=255, g=0, b=254;
     float eX, eY;
     eX=  eleX + 30 + 0.5*z;
     eY=  eleY;
-    float radius;
     float theta;
-    int ring=1;                                // n-quantum number (K,L,M,N, ...)
     theta= TWO_PI * time * 0.0005;
+    float radius;
+    int ring=1;                                // n-quantum number (K,L,M,N, ...)
+    float r=250, g=0, b=250;
+    //
     for ( int i=1; i<z+1; i++ ) {
-      if (i==3) { ring++; b=0; }               // K
-      if (i==11) { ring++; g=100; }            // L
-      if (i==29) ring++;                       // M
-      if (i==61) { ring++; b=200; }            // N
-      if (i==111) { ring++; r=g=0; }           // O
+      if (i<=2) { ring=1; r=250; g=0; b=250; }               // K
+      else if (i<=10) { ring=2; r=250; g=0; b=0; }           // L
+      else if (i<=28) { ring=3; r=200; g=200; b=0; }         // M
+      else if (i<=60) { ring=4; r=0; g=200; b=0; }           // M
+      else if (i<=110) { ring=5; r=0; g=0; b=200; }          // N
+      else { ring=6; r=0; g=200; b=200;  }           // O
       int pop=  2 * ring*ring;
       radius=  z/3 + 60 * ring;
       theta=  theta + TWO_PI/pop;
       //
       eX=  eleX + radius * sin( theta );
       eY=  eleY + radius * cos( theta );
-      r -= 1;
-      g += 3;
+      r += 1;
+      g += 1;
       b += 1;
       fill(r,g,b);
       ellipse(eX, eY, 10, 10);
@@ -195,7 +197,7 @@ class Element {
       textSize(25);
       text("-", eX-7, eY+7);
       textSize(8);
-      text(i+1, eX-5, eY+11);
+      text(i+1, eX-7, eY+10);
     }
   }
 }
