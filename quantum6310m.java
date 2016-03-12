@@ -206,7 +206,10 @@ void draw() {
   textSize(20);  
   text( "Quantum numbers for electrons.", width/3, 20 );
   textSize(12);  
-  text( "    (For rotation, press '>' or '< key, or '|' to slow down.)   "+rotation, width/3, 40 );
+  text( "+ or - to change element number (or use H,C,O,N,F, .., W,U,X,!, etc.)", width/3, 40 );
+  text( "    (For rotation, press '>' or '< key, or '|' to slow down.)   "+rotation, width/3, 60 );
+  text( "Debugging codes:  @ # ^ etc.", width*2/3, height-20 );
+  text( "0 or 1 to for background.", width*2/3, height-20 );
 
   int z=  nEshow-1;
   wN = 20  +  0.5 * z;        // Width of nucleus.
