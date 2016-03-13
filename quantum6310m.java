@@ -5,7 +5,7 @@ float xA=ww/2, yA=hh/2;          // Position of nucleus.
 float rE=80, theta=  PI / 4;     // Position of electron.
 float wN=50, wE=20;              // Width of nucleus & electron.
 
-int nE=  250;                    // Number of electrons.
+int nE=  200;                    // Number of electrons.
 int nEshow=  17;
 Electron[] e=  new Electron[nE];
 
@@ -208,9 +208,11 @@ void draw() {
   textSize(12);  
   text( "+ or - to change element number (or use H,C,O,N,F, .., W,U,X,!, etc.)", width/3, 40 );
   text( "    (For rotation, press '>' or '< key, or '|' to slow down.)   "+rotation, width/3, 60 );
-  text( "Debugging codes:  @ # ^ etc.", width*2/3, height-20 );
+  text( "Debugging codes:  @ # ^ etc.", width*2/3, height-30 );
   text( "0 or 1 to for background.", width*2/3, height-20 );
 
+  if (nEshow<1) nEshow=1;
+  if (nEshow>=nE) nEshow=nE-1;
   int z=  nEshow-1;
   wN = 20  +  0.5 * z;        // Width of nucleus.
 
@@ -279,7 +281,8 @@ void nucleus( int a ) {
   // Atomic mass.
   textSize( 8 );
   //--  int amu=  nE + nN;
-  int neutrons=  a;
+  int neutrons=  0;
+  if (a>1) neutrons=a;
   if (a>20) neutrons=  int( 1.2 * a);        // ++++ GET A BETTER APPROXIMATION!
   if (a>40) neutrons=  int( 1.3 * a);
   if (a>60) neutrons=  int( 1.4 * a);
@@ -316,7 +319,6 @@ void keyPressed() {
   if (key == 'N') a=7;
   if (key == 'O') a=8;
   if (key == 'F') a=9;
-  if (key == 'A') a=18;
   if (key == 'P') a=15;
   if (key == 'S') a=16;
   if (key == 'K') a=19;
@@ -324,6 +326,7 @@ void keyPressed() {
   if (key == 'Z') a=30;
   if (key == 'Y') a=39;
   //
+  if (key == 'A') a=47;
   if (key == 'I') a=53;
   if (key == 'W') a=74;
   if (key == 'G') a=79;
@@ -413,10 +416,10 @@ class Electron {
     if (l==2) {
       if (m==1) { theta = -TWO_PI/8; }
       else if (m==2) { theta = PI - TWO_PI/8; }
-      else if (m<10) {
+      else if (m<11) {
         theta = +TWO_PI/8;
         dtheta=  TWO_PI / 4;
-        stheta=  TWO_PI / 16;      //????
+        stheta=  TWO_PI / 32;      //????
         theta += dtheta * mm;
         theta += s>0 ? stheta : -stheta;
       } else {
